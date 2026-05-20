@@ -43,6 +43,37 @@ body {
   color: var(--ink);
   max-width: 100%;
   overflow-x: hidden;
+  /* Fig-leaf cursor in rust; hotspot at the tip. */
+  cursor: url("/cursor.svg") 5 5, auto;
+}
+
+a,
+button,
+[role="button"],
+summary,
+label,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  cursor: url("/cursor-pointer.svg") 6 6, pointer;
+}
+
+/* Native form controls keep their conventional cursors for clarity */
+input:not([type="submit"]):not([type="button"]):not([type="reset"]),
+textarea,
+select {
+  cursor: text;
+}
+
+/* Disable custom cursor on touch / coarse pointer devices */
+@media (pointer: coarse) {
+  html,
+  body,
+  a,
+  button,
+  [role="button"] {
+    cursor: auto;
+  }
 }
 
 body {
