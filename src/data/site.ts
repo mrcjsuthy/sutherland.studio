@@ -2,7 +2,7 @@ export const site = {
   name: "Sutherland Studio",
   initials: "SS",
   domain: "sutherland.studio",
-  email: "studio@sutherland.studio",
+  email: "hello@sutherland.studio",
   phone: "+64 21 123 4365",
   instagram: "@sutherland.studio",
   cities: [

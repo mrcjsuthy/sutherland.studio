@@ -1,4 +1,5 @@
 import { site } from "@/data/site";
+import { Newsletter } from "./Newsletter";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -97,25 +98,7 @@ export function Footer() {
             <p className="font-display text-xl leading-tight">
               Four times a year. New pieces, open commissions, workshop notes.
             </p>
-            <form
-              className="mt-4 flex border-b border-bone/30"
-              action="mailto:studio@sutherland.studio"
-              method="post"
-              encType="text/plain"
-            >
-              <input
-                type="email"
-                required
-                placeholder="you@somewhere.co.nz"
-                className="bg-transparent flex-1 py-2 outline-none placeholder:text-bone/40 text-bone"
-              />
-              <button
-                type="submit"
-                className="font-mono text-[11px] tracking-[0.18em] uppercase text-bone hover:text-signal"
-              >
-                Join →
-              </button>
-            </form>
+            <Newsletter />
           </div>
         </div>
 

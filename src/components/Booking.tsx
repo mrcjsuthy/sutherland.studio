@@ -67,8 +67,8 @@ export function Booking() {
       });
       if (!res.ok) throw new Error("Request failed");
       setSubmitted(true);
-    } catch (err) {
-      setError("Couldn’t send that. Try again, or email studio@sutherland.studio.");
+    } catch {
+      setError(`Couldn’t send that. Try again, or email ${site.email}.`);
     } finally {
       setLoading(false);
     }

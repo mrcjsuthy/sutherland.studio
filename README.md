@@ -30,7 +30,8 @@ src/
     layout.tsx           Root layout — fonts, metadata, SEO
     page.tsx             Single-page composition
     globals.css          Design tokens, utilities, animations
-    api/book/route.ts    Booking POST endpoint
+    api/book/route.ts        Booking POST endpoint (Resend)
+    api/subscribe/route.ts   Newsletter POST endpoint (Resend)
   components/
     Nav.tsx              Sticky header + mobile menu
     Hero.tsx             Editorial hero with index, big wordmark, locations
@@ -41,28 +42,39 @@ src/
     Process.tsx          Dark "From sketch to delivery" five-step
     Booking.tsx          Interactive consultation booking form
     Footer.tsx           Big wordmark, contact, index, newsletter
+    Newsletter.tsx       Newsletter signup client form
   data/
     site.ts              All editable copy: services, products, work, process
+  lib/
+    mailer.ts            Resend client + shared HTML email template
 ```
 
 ## Editing content
 
 Almost all copy lives in `src/data/site.ts`. To add a new piece of work, a new service, a new product or change the process steps, edit that file — components read from it. Prices, lead times, materials and Italian product names are all there.
 
-## Booking API
+## Email — booking + newsletter
 
-The booking form posts to `POST /api/book`. The current implementation logs to the server console. To wire up real email confirmations, add one of these in `src/app/api/book/route.ts`:
+Two API routes power the site’s contact paths:
 
-- [Resend](https://resend.com) — recommended, ~5 lines of code
-- [Postmark](https://postmarkapp.com), [SendGrid](https://sendgrid.com), or AWS SES
+- `POST /api/book` — consultation booking. Sends a notification to the studio inbox **and** a styled confirmation to the booker.
+- `POST /api/subscribe` — newsletter signup. Sends a notification to the studio inbox.
 
-Add the API key to `.env.local`:
+Both use [Resend](https://resend.com). Setup:
+
+1. Sign up at https://resend.com and create an API key.
+2. Add the `sutherland.studio` domain in Resend → **Domains** and add the DNS records they show you at your registrar. Sending from a verified domain is required for delivery to real inboxes — until verification finishes, you can only send test mail to the email tied to your Resend account.
+3. Copy `.env.example` → `.env.local` and fill in the values:
 
 ```bash
-RESEND_API_KEY=re_xxxxxxxxxxxx
+cp .env.example .env.local
 ```
 
-If you want a real calendar with availability, swap the form for a [Cal.com](https://cal.com) embed and keep the rest of the page as-is.
+Then in Vercel: **Project → Settings → Environment Variables**, add the same `RESEND_API_KEY`, `MAIL_FROM`, and `MAIL_NOTIFY` values for Production (and Preview if you want to test).
+
+The two routes degrade gracefully — if `RESEND_API_KEY` isn’t set the request still returns `ok` and logs to the server console, so the form doesn’t break on first deploy. Once the key is set, real email starts flowing.
+
+To swap to a hosted calendar instead, drop in a [Cal.com](https://cal.com) embed in `Booking.tsx`.
 
 ## Design system
 
