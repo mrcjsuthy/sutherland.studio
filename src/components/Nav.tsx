@@ -118,9 +118,8 @@ export function Nav() {
 
 function Mark() {
   return (
-    <span className="relative inline-flex items-center justify-center text-ink">
-      <Logo size={28} />
-      <span className="absolute -right-1 -bottom-0.5 size-1.5 bg-rust" />
+    <span className="inline-flex items-center justify-center text-ink">
+      <Logo size={30} />
     </span>
   );
 }
