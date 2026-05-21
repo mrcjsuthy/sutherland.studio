@@ -5,22 +5,37 @@ export const site = {
   email: "hello@sutherland.studio",
   phone: "+64 21 123 4365",
   instagram: "@sutherland.studio",
+  youtube: {
+    handle: "@sutherlandstudio",
+    url: "https://www.youtube.com/@sutherlandstudio",
+    tagline: "Every build, on film.",
+    subscribers: "Subscribe — we're just starting",
+  },
   cities: [
     { name: "Firenze", country: "Italia", lat: "43°46′N", long: "11°15′E" },
     { name: "Tāmaki Makaurau", country: "Aotearoa", lat: "36°46′S", long: "174°45′E" },
   ],
   tagline: "Design & build, made to measure.",
   manifesto:
-    "Sutherland Studio is a one-bench practice making considered objects, furniture and small interiors. Trained in industrial design in Florence and now working out of a workshop in Auckland — pairing Italian discipline with the texture of the South Pacific. Every commission is drawn, prototyped and built by hand.",
+    "Sutherland Studio is a one-bench practice making considered objects, furniture and small interiors — and the brands, films and digital tools that sit alongside them. Trained in industrial design in Florence and working out of a workshop in Auckland. Every commission is drawn, prototyped and built by hand. Every build is filmed start to finish, and the film is delivered with the piece.",
+  studioHours: {
+    // NZST. Mon–Fri 09:00–21:00.
+    weekdayOpen: 9,
+    weekdayClose: 21,
+    timezone: "Pacific/Auckland",
+    label: "Mon–Fri · 09:00–21:00 NZT",
+  },
 };
 
 export const ticker = [
   "Design",
   "Prototype",
   "Build",
+  "Every build on film",
   "Florence ⇄ Auckland",
   "Steel · Oak · Brass · Stone",
   "Made to measure",
+  "Brand · Web · AI · Object",
   "Est. 2026",
 ];
 
@@ -65,7 +80,7 @@ export const work = [
     material: "Stainless · European oak · Travertine",
     year: "2026",
     place: "Grey Lynn, Auckland",
-    notes: "Full design–build. From measured drawings to install.",
+    notes: "Full design–build. From measured drawings to install — and on film.",
     accent: "rust" as const,
     size: "mid" as const,
   },
@@ -93,42 +108,79 @@ export const work = [
   },
 ];
 
-export const services = [
+export type Service = {
+  code: string;
+  name: string;
+  desc: string;
+  from: string;
+  group: "build" | "digital";
+  href?: string; // external URL, takes precedence over #book
+};
+
+export const services: Service[] = [
   {
     code: "S/01",
     name: "Bespoke Furniture",
-    desc: "Tables, seating, casegoods. Drawn, prototyped, built in-house.",
+    desc: "Tables, seating, casegoods. Drawn, prototyped, built in-house. Every build filmed.",
     from: "NZD 4,800",
+    group: "build",
   },
   {
     code: "S/02",
     name: "Kitchens & Joinery",
-    desc: "Full design–build. Measured survey through to install.",
+    desc: "Full design–build. Measured survey through to install. Filmed start to finish.",
     from: "NZD 28,000",
+    group: "build",
   },
   {
     code: "S/03",
     name: "Lighting & Objects",
     desc: "Small-batch lamps, vessels, hardware. Editions of 10–50.",
     from: "NZD 380",
+    group: "build",
   },
   {
     code: "S/04",
     name: "Interior Fit-out",
     desc: "Small commercial and residential. Cafés, studios, retail.",
     from: "POA",
+    group: "build",
   },
   {
     code: "S/05",
-    name: "Industrial Design",
-    desc: "Concept, CAD, prototyping for product clients. Day rate.",
+    name: "Product / Industrial Design",
+    desc: "Concept, CAD, prototyping for product clients. From sketch to first run.",
     from: "NZD 1,400/day",
+    group: "build",
   },
   {
     code: "S/06",
-    name: "Consultation",
-    desc: "60-minute studio session. Drawings, materials, costing direction.",
-    from: "NZD 180",
+    name: "Graphic Design",
+    desc: "Identity, print, signage and packaging. Built to live next to the object.",
+    from: "NZD 1,200",
+    group: "digital",
+  },
+  {
+    code: "S/07",
+    name: "Web & App Development",
+    desc: "Editorial sites, product pages, lightweight apps. Designed and shipped end-to-end.",
+    from: "NZD 3,800",
+    group: "digital",
+  },
+  {
+    code: "S/08",
+    name: "AI Strategy & Implementation",
+    desc: "Practical AI for small studios and operators. Delivered via AI Partner — our sister practice.",
+    from: "POA",
+    group: "digital",
+    href: "https://www.aipartner.co.nz",
+  },
+  {
+    code: "S/09",
+    name: "Free Consultation",
+    desc: "60-minute studio session. Drawings, materials, costing direction. Free, no obligation.",
+    from: "Free",
+    group: "build",
   },
 ];
 
@@ -145,7 +197,7 @@ export const process = [
   {
     n: "I",
     title: "Conversation",
-    body: "A 60-minute studio session. Bring references, measurements, dreams. We sketch and scope.",
+    body: "A free 60-minute studio session. Bring references, measurements, dreams. We sketch and scope together.",
   },
   {
     n: "II",
@@ -159,19 +211,112 @@ export const process = [
   },
   {
     n: "IV",
-    title: "Build",
-    body: "Made on a single bench, by one set of hands. Progress photos posted weekly.",
+    title: "Build & Film",
+    body: "Made on a single bench, by one set of hands — and filmed start to finish. Weekly cuts posted while we work.",
   },
   {
     n: "V",
-    title: "Delivery",
-    body: "Hand delivered and installed across Tāmaki Makaurau. Care notes and a 10-year guarantee.",
+    title: "Delivery & Film",
+    body: "Hand delivered and installed across Tāmaki Makaurau. The finished film of your build ships with the piece.",
   },
 ];
 
 export const stats = [
-  { k: "Years on the bench", v: "12" },
+  { k: "Years at the bench", v: "12" },
   { k: "Trained", v: "Florence, IT" },
   { k: "Studio", v: "Auckland, NZ" },
   { k: "Lead time", v: "6–12 wks" },
+];
+
+// ---------------------------------------------------------------------------
+// "Right now at the bench" — the current project being worked on.
+// Update these fields whenever you finish a build or start a new one.
+// ---------------------------------------------------------------------------
+export const currentBuild = {
+  code: "ATB/07",
+  title: "Cucina K2",
+  type: "Kitchen build",
+  client: "Private residence · Grey Lynn",
+  startedAt: "2026-04-12",
+  eta: "2026-06-30",
+  progress: 0.62, // 0–1
+  materials: ["Stainless steel", "European oak", "Travertine"],
+  note: "Joinery carcass up; door fronts in their second coat of oil this week.",
+  filmEpisode: "Film · EP/07 — Frames & faces",
+  filmHref: "https://www.youtube.com/@sutherlandstudio",
+};
+
+// ---------------------------------------------------------------------------
+// Limited edition release with countdown + order flow.
+// Set `unlockAt` to a future ISO timestamp; the order form is locked until
+// then. Set `soldOut: true` once the edition is gone.
+// ---------------------------------------------------------------------------
+export const release = {
+  code: "R/001",
+  title: "Lampada Sasso · Edizione I",
+  blurb:
+    "Hand-poured concrete base with a brushed-brass collar and a warm dimmable LED. Twenty-four pieces. Each numbered, signed and shipped with its build film.",
+  price: 690, // NZD ex GST
+  currency: "NZD",
+  unitsTotal: 24,
+  // Resolves to local NZ time. Edit this to set the unlock moment.
+  unlockAt: "2026-05-23T19:00:00+12:00",
+  closesAt: "2026-06-30T23:59:00+12:00",
+  materials: "Cast concrete · Brushed brass · Warm LED",
+  dimensions: "Ø 180mm · H 280mm",
+  ships: "Ships from Auckland within 4 weeks of order.",
+  imageAccent: "rust" as const,
+  soldOut: false,
+};
+
+// ---------------------------------------------------------------------------
+// Partnerships / openings. Each vacancy has a status — open / closed / soon.
+// Showcased like the studio-open badge: a coloured dot + label.
+// ---------------------------------------------------------------------------
+export type Vacancy = {
+  code: string;
+  title: string;
+  kind: "Full-time" | "Part-time" | "Contract" | "Apprenticeship" | "Partnership";
+  location: "Auckland" | "Remote" | "Hybrid";
+  status: "open" | "soon" | "closed";
+  blurb: string;
+};
+
+export const vacancies: Vacancy[] = [
+  {
+    code: "V/01",
+    title: "Workshop Apprentice",
+    kind: "Apprenticeship",
+    location: "Auckland",
+    status: "open",
+    blurb:
+      "Two days a week on the bench — joinery, finishing and the occasional steel weld. Curious hands, careful eye.",
+  },
+  {
+    code: "V/02",
+    title: "Build Film Director",
+    kind: "Contract",
+    location: "Auckland",
+    status: "open",
+    blurb:
+      "Document our builds — single-camera, available light, monthly cuts. Editorial sensibility over reels-and-hooks.",
+  },
+  {
+    code: "V/03",
+    title: "Brand & Web Designer",
+    kind: "Part-time",
+    location: "Hybrid",
+    status: "soon",
+    blurb:
+      "Identity systems and small editorial sites for our service clients. Opens once the first three are in production.",
+  },
+  {
+    code: "V/04",
+    title: "Strategic Partnership",
+    kind: "Partnership",
+    location: "Remote",
+    status: "open",
+    blurb:
+      "Material suppliers, architects, agencies, and AI Partner referrers — we're open to long-term collaborations.",
+  },
 ];

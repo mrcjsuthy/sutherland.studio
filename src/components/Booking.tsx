@@ -3,7 +3,17 @@
 import { useMemo, useState } from "react";
 import { site } from "@/data/site";
 
-type ProjectType = "Furniture" | "Kitchen / Joinery" | "Lighting / Object" | "Interior" | "Other";
+type ProjectType =
+  | "Furniture"
+  | "Kitchen / Joinery"
+  | "Lighting / Object"
+  | "Interior"
+  | "Product / Industrial"
+  | "Graphic Design"
+  | "Web / App"
+  | "AI Strategy"
+  | "Partnership"
+  | "Other";
 type Budget = "< 5k" | "5–15k" | "15–40k" | "40k+" | "Open";
 
 const projectTypes: ProjectType[] = [
@@ -11,6 +21,11 @@ const projectTypes: ProjectType[] = [
   "Kitchen / Joinery",
   "Lighting / Object",
   "Interior",
+  "Product / Industrial",
+  "Graphic Design",
+  "Web / App",
+  "AI Strategy",
+  "Partnership",
   "Other",
 ];
 
@@ -79,15 +94,14 @@ export function Booking() {
       <div className="max-w-[1400px] mx-auto px-5 md:px-8 py-16 md:py-24 grid grid-cols-12 gap-4 md:gap-8">
         {/* Left column: pitch */}
         <div className="col-span-12 lg:col-span-5">
-          <p className="label-ink">§ 06 — Consultation</p>
+          <p className="label-ink">§ 09 — Consultation</p>
           <h2 className="font-display text-4xl md:text-6xl leading-[0.92] tracking-tight mt-3">
-            Book a <em className="text-rust">60-minute</em> studio session.
+            Book a <em className="text-rust">free</em> 60-minute studio session.
           </h2>
           <p className="mt-5 text-[15px] leading-[1.65] text-graphite max-w-[44ch]">
             In person at the workshop in Auckland, or by video. Bring references,
             rough dimensions and a clear brief. You leave with sketches, material
-            options and a costing direction. NZD 180 — applied to your build if
-            you commission.
+            options and a costing direction — no fee, no obligation.
           </p>
 
           <dl className="mt-8 border-t hairline-strong">
@@ -266,8 +280,8 @@ export function Booking() {
               {/* Submit */}
               <div className="col-span-12 mt-6 flex flex-wrap items-center justify-between gap-4 border-t hairline-strong pt-5">
                 <p className="label max-w-[36ch]">
-                  By booking you agree to a NZD 180 consultation fee, invoiced
-                  after the session.
+                  Free of charge — no obligation, no fine print. Just bring
+                  the brief.
                 </p>
                 <button
                   type="submit"

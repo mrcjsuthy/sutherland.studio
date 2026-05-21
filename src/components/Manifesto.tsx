@@ -47,6 +47,7 @@ export function Manifesto() {
               <ol className="space-y-3">
                 {[
                   "One bench. One set of hands.",
+                  "Every build, on film — delivered with the piece.",
                   "Honest materials, visible joints.",
                   "Drawn before it’s built.",
                   "A 10-year guarantee, in writing.",

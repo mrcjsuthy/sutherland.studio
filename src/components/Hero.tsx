@@ -1,4 +1,5 @@
 import { site, stats } from "@/data/site";
+import { StudioStatus } from "./StudioStatus";
 
 export function Hero() {
   return (
@@ -21,18 +22,17 @@ export function Hero() {
       <div className="relative max-w-[1400px] mx-auto px-5 md:px-8">
         {/* Top meta row */}
         <div className="grid grid-cols-12 gap-4 pb-6 border-b hairline">
-          <div className="col-span-6 md:col-span-3 flex items-center gap-2">
-            <span className="size-1.5 rounded-full bg-moss pulse-soft" />
-            <span className="label-ink">Studio — open · 2026</span>
+          <div className="col-span-12 md:col-span-4 flex items-center gap-2">
+            <StudioStatus detailed />
           </div>
-          <div className="hidden md:flex col-span-3 items-center label">
+          <div className="hidden md:flex col-span-2 items-center label">
             <span>Lat 36°46′S · Long 174°45′E</span>
           </div>
           <div className="hidden md:flex col-span-3 items-center label">
             <span>Workshop — Tāmaki Makaurau</span>
           </div>
-          <div className="col-span-6 md:col-span-3 flex items-center justify-end label">
-            <span>Vol. 01 / Iss. 01</span>
+          <div className="col-span-12 md:col-span-3 flex items-center md:justify-end label">
+            <span>Vol. 01 / Iss. 01 · {site.youtube.tagline}</span>
           </div>
         </div>
 
@@ -83,11 +83,16 @@ export function Hero() {
               <div className="col-span-12 md:col-span-5 flex md:justify-end items-end min-w-0">
                 <div className="flex flex-col sm:flex-row flex-wrap gap-3 w-full md:w-auto">
                   <a href="#book" className="btn-primary justify-center sm:justify-start">
-                    Book a consultation
+                    Book free consultation
                     <Arrow />
                   </a>
-                  <a href="#work" className="btn-ghost justify-center sm:justify-start">
-                    Selected work
+                  <a
+                    href={site.youtube.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-ghost justify-center sm:justify-start"
+                  >
+                    Watch on YouTube
                   </a>
                 </div>
               </div>
@@ -118,7 +123,7 @@ export function Hero() {
           <div className="col-span-12 md:col-span-3 md:border-l hairline md:pl-4">
             <div className="label mb-1">Disciplines</div>
             <div className="font-display text-lg md:text-xl leading-tight break-words">
-              Furniture · Lighting · Joinery · Objects
+              Furniture · Interiors · Industrial · Brand · Web · AI · Film
             </div>
           </div>
           <div className="col-span-12 md:col-span-3 md:border-l hairline md:pl-4">

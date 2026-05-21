@@ -30,8 +30,10 @@ src/
     layout.tsx           Root layout — fonts, metadata, SEO
     page.tsx             Single-page composition
     globals.css          Design tokens, utilities, animations
-    api/book/route.ts        Booking POST endpoint (Resend)
-    api/subscribe/route.ts   Newsletter POST endpoint (Resend)
+    api/book/route.ts        Free-consultation booking endpoint (Resend)
+    api/subscribe/route.ts   Newsletter / "notify me on unlock" endpoint
+    api/order/route.ts       Limited-edition release order endpoint (gated by unlockAt)
+    api/apply/route.ts       Careers / partnership application endpoint
   components/
     Nav.tsx              Sticky header + mobile menu
     Hero.tsx             Editorial hero with index, big wordmark, locations
@@ -43,11 +45,31 @@ src/
     Booking.tsx          Interactive consultation booking form
     Footer.tsx           Big wordmark, contact, index, newsletter
     Newsletter.tsx       Newsletter signup client form
+    CurrentBuild.tsx     "Right now at the bench" snapshot
+    Films.tsx            YouTube channel + featured episodes
+    Release.tsx          Limited edition with live countdown + order form
+    Careers.tsx          Vacancies (open/soon/closed) + application form
+    StudioStatus.tsx     Live "Studio open/closed" badge (NZ time-aware)
+    BenchRate.tsx        Dynamic hourly bench rate in the header
   data/
-    site.ts              All editable copy: services, products, work, process
+    site.ts              All editable copy: services, work, release, vacancies, current build…
   lib/
     mailer.ts            Resend client + shared HTML email template
+    studio.ts            NZ time helpers — studio status, hourly rate, countdown
 ```
+
+## Editable knobs
+
+Almost every piece of dynamic-looking content is plain data in `src/data/site.ts`:
+
+- `site.studioHours` — open hours (default Mon–Fri 09:00–21:00 NZT). The header badge, hero meta row and bench-rate widget all react to this.
+- `site.youtube` — channel URL, handle and tagline. Used by the Films section and the Hero "Watch on YouTube" CTA.
+- `currentBuild` — the "Right now at the bench" snapshot. Update it whenever you start or finish a build.
+- `release` — current limited edition. Set `unlockAt` (ISO with NZ offset) to schedule a drop; the order form is locked until that instant and unlocks automatically client-side, server-side validated in `/api/order`.
+- `vacancies` — careers list. Each role has `status: "open" | "soon" | "closed"` which drives the dot colour and whether "Apply" is shown.
+- `services` — grouped by `group: "build" | "digital"`. Setting an external `href` (e.g. AI Strategy → AI Partner) renders an "↗ External / Visit" link instead of the in-page Enquire CTA.
+
+The bench rate (header) is a deterministic function of the local NZ hour in `src/lib/studio.ts` — same for every visitor at the same moment, peaking around noon weekdays.
 
 ## Editing content
 

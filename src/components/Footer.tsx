@@ -59,6 +59,11 @@ export function Footer() {
                   {site.instagram}
                 </a>
               </li>
+              <li>
+                <a className="font-display text-lg md:text-xl leading-tight hover:text-signal" href={site.youtube.url} target="_blank" rel="noreferrer">
+                  YouTube — {site.youtube.handle}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -68,11 +73,14 @@ export function Footer() {
             </p>
             <ul className="space-y-2">
               {[
-                ["01", "Work", "#work"],
-                ["02", "Services", "#services"],
-                ["03", "Shop", "#products"],
-                ["04", "Process", "#process"],
-                ["05", "Book", "#book"],
+                ["01", "At the bench", "#bench"],
+                ["02", "Work", "#work"],
+                ["03", "Films", "#films"],
+                ["04", "Services", "#services"],
+                ["05", "Release", "#release"],
+                ["06", "Process", "#process"],
+                ["07", "Careers", "#careers"],
+                ["08", "Book", "#book"],
               ].map(([n, label, href]) => (
                 <li key={href}>
                   <a

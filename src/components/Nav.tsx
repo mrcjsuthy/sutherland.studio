@@ -3,12 +3,15 @@
 import { useEffect, useState } from "react";
 import { site } from "@/data/site";
 import { Logo } from "./Logo";
+import { StudioStatus } from "./StudioStatus";
+import { BenchRate } from "./BenchRate";
 
 const links = [
   { label: "Work", href: "#work" },
+  { label: "Films", href: "#films" },
   { label: "Services", href: "#services" },
-  { label: "Shop", href: "#products" },
-  { label: "Process", href: "#process" },
+  { label: "Release", href: "#release" },
+  { label: "Careers", href: "#careers" },
   { label: "Book", href: "#book" },
 ];
 
@@ -39,7 +42,7 @@ export function Nav() {
           </span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-7">
+        <ul className="hidden lg:flex items-center gap-5 xl:gap-7">
           {links.map((l) => (
             <li key={l.href}>
               <a
@@ -52,11 +55,9 @@ export function Nav() {
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-3">
-          <span className="hidden lg:inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.16em] uppercase text-concrete">
-            <span className="size-1.5 rounded-full bg-moss pulse-soft" />
-            Taking commissions
-          </span>
+        <div className="hidden md:flex items-center gap-4">
+          <BenchRate className="hidden xl:inline-flex" />
+          <StudioStatus className="hidden lg:inline-flex" />
           <a href="#book" className="btn-primary">
             Book
           </a>
@@ -86,30 +87,31 @@ export function Nav() {
       </nav>
 
       {open && (
-        <div className="md:hidden border-t hairline bg-bone">
-          <ul className="px-5 py-4 grid grid-cols-2 gap-y-3 gap-x-6">
+        <div className="lg:hidden border-t hairline bg-bone">
+          <div className="px-5 py-4 grid grid-cols-2 gap-y-3 gap-x-6">
+            <div className="col-span-2 flex flex-wrap items-center gap-x-4 gap-y-2 pb-3 border-b hairline">
+              <StudioStatus />
+              <BenchRate />
+            </div>
             {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  onClick={() => setOpen(false)}
-                  href={l.href}
-                  className="font-mono text-[11px] tracking-[0.18em] uppercase block py-2"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-            <li className="col-span-2 pt-2">
               <a
+                key={l.href}
                 onClick={() => setOpen(false)}
-                href="#book"
-                className="btn-primary w-full justify-center"
+                href={l.href}
+                className="font-mono text-[11px] tracking-[0.18em] uppercase block py-2"
               >
-                Book a session
+                {l.label}
               </a>
-            </li>
-            <li className="col-span-2 label">{site.email}</li>
-          </ul>
+            ))}
+            <a
+              onClick={() => setOpen(false)}
+              href="#book"
+              className="btn-primary w-full justify-center col-span-2 mt-1"
+            >
+              Book a free session
+            </a>
+            <div className="col-span-2 label">{site.email}</div>
+          </div>
         </div>
       )}
     </header>
