@@ -4,12 +4,16 @@ export const site = {
   domain: "sutherland.studio",
   email: "hello@sutherland.studio",
   phone: "+64 21 123 4365",
-  instagram: "@sutherland.studio",
   youtube: {
-    handle: "@sutherlandstudio",
-    url: "https://www.youtube.com/@sutherlandstudio",
+    handle: "@sutherland-studio",
+    url: "https://www.youtube.com/@sutherland-studio",
     tagline: "Every build, on film.",
     subscribers: "Subscribe — we're just starting",
+  },
+  patreon: {
+    handle: "Sutherland Studio",
+    url: "https://www.patreon.com/cw/SutherlandStudio",
+    tagline: "Support the workshop — from NZD 3.50/month",
   },
   cities: [
     { name: "Firenze", country: "Italia", lat: "43°46′N", long: "11°15′E" },
@@ -243,7 +247,7 @@ export const currentBuild = {
   materials: ["Stainless steel", "European oak", "Travertine"],
   note: "Joinery carcass up; door fronts in their second coat of oil this week.",
   filmEpisode: "Film · EP/07 — Frames & faces",
-  filmHref: "https://www.youtube.com/@sutherlandstudio",
+  filmHref: "https://www.youtube.com/@sutherland-studio",
 };
 
 // ---------------------------------------------------------------------------

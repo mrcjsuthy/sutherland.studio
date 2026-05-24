@@ -94,6 +94,14 @@ export function Hero() {
                   >
                     Watch on YouTube
                   </a>
+                  <a
+                    href={site.patreon.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-ghost justify-center sm:justify-start"
+                  >
+                    Support on Patreon
+                  </a>
                 </div>
               </div>
             </div>

@@ -71,17 +71,30 @@ export function Films() {
             </p>
           </div>
           <div className="col-span-12 md:col-span-3 md:text-right md:self-end">
-            <a
-              href={site.youtube.url}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 px-4 h-11 bg-rust text-bone font-mono text-[11px] tracking-[0.18em] uppercase hover:bg-signal transition-colors"
-            >
-              <YouTubeGlyph />
-              Subscribe
-            </a>
+            <div className="flex flex-col items-stretch md:items-end gap-2">
+              <a
+                href={site.youtube.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-4 h-11 bg-rust text-bone font-mono text-[11px] tracking-[0.18em] uppercase hover:bg-signal transition-colors"
+              >
+                <YouTubeGlyph />
+                Subscribe
+              </a>
+              <a
+                href={site.patreon.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-4 h-11 border border-bone/40 text-bone font-mono text-[11px] tracking-[0.18em] uppercase hover:border-signal hover:text-signal transition-colors"
+              >
+                Support on Patreon
+              </a>
+            </div>
             <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-bone/55 mt-3">
               {site.youtube.handle}
+            </p>
+            <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-bone/45 mt-1">
+              {site.patreon.tagline}
             </p>
           </div>
         </header>
@@ -206,16 +219,27 @@ export function Films() {
                 </li>
               ))}
             </ul>
-            <a
-              href={site.youtube.url}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 mt-3 font-mono text-[11px] tracking-[0.18em] uppercase text-bone border-b border-bone/40 hover:text-signal hover:border-signal w-fit"
-            >
-              <YouTubeGlyph />
-              Subscribe on YouTube
-              <span aria-hidden>→</span>
-            </a>
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+              <a
+                href={site.youtube.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.18em] uppercase text-bone border-b border-bone/40 hover:text-signal hover:border-signal"
+              >
+                <YouTubeGlyph />
+                Subscribe on YouTube
+                <span aria-hidden>→</span>
+              </a>
+              <a
+                href={site.patreon.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.18em] uppercase text-bone border-b border-bone/40 hover:text-signal hover:border-signal"
+              >
+                Support on Patreon
+                <span aria-hidden>→</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

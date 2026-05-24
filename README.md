@@ -64,6 +64,7 @@ Almost every piece of dynamic-looking content is plain data in `src/data/site.ts
 
 - `site.studioHours` — open hours (default Mon–Fri 09:00–21:00 NZT). The header badge, hero meta row and bench-rate widget all react to this.
 - `site.youtube` — channel URL, handle and tagline. Used by the Films section and the Hero "Watch on YouTube" CTA.
+- `site.patreon` — Patreon URL and support copy. Linked from Hero, Films and Footer.
 - `currentBuild` — the "Right now at the bench" snapshot. Update it whenever you start or finish a build.
 - `release` — current limited edition. Set `unlockAt` (ISO with NZ offset) to schedule a drop; the order form is locked until that instant and unlocks automatically client-side, server-side validated in `/api/order`.
 - `vacancies` — careers list. Each role has `status: "open" | "soon" | "closed"` which drives the dot colour and whether "Apply" is shown.

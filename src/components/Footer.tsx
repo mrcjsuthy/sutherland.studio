@@ -55,13 +55,13 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a className="font-display text-lg md:text-xl leading-tight hover:text-signal" href={`https://instagram.com/${site.instagram.replace("@", "")}`} target="_blank" rel="noreferrer">
-                  {site.instagram}
+                <a className="font-display text-lg md:text-xl leading-tight hover:text-signal" href={site.youtube.url} target="_blank" rel="noreferrer">
+                  YouTube — {site.youtube.handle}
                 </a>
               </li>
               <li>
-                <a className="font-display text-lg md:text-xl leading-tight hover:text-signal" href={site.youtube.url} target="_blank" rel="noreferrer">
-                  YouTube — {site.youtube.handle}
+                <a className="font-display text-lg md:text-xl leading-tight hover:text-signal" href={site.patreon.url} target="_blank" rel="noreferrer">
+                  Patreon — {site.patreon.handle}
                 </a>
               </li>
             </ul>
