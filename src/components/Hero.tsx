@@ -43,8 +43,8 @@ export function Hero() {
             <div className="sticky top-24">
               <p className="label mb-3">Index — A1</p>
               <p className="font-mono text-[11px] leading-relaxed text-graphite max-w-[24ch]">
-                A design & build studio for objects, furniture and small
-                interiors. Italian discipline, South Pacific texture.
+                A design & build studio for furniture, objects and small
+                installations. Italian discipline, South Pacific texture.
               </p>
               <div className="mt-6 grid grid-cols-2 gap-y-3">
                 {stats.map((s) => (
@@ -131,7 +131,7 @@ export function Hero() {
           <div className="col-span-12 md:col-span-3 md:border-l hairline md:pl-4">
             <div className="label mb-1">Disciplines</div>
             <div className="font-display text-lg md:text-xl leading-tight break-words">
-              Furniture · Interiors · Industrial · Brand · Web · AI · Film
+              Furniture · Installation · Product · Brand · Web · Film
             </div>
           </div>
           <div className="col-span-12 md:col-span-3 md:border-l hairline md:pl-4">

@@ -36,8 +36,8 @@ export function Manifesto() {
               </p>
               <p className="mt-5 text-[15px] leading-[1.65] text-graphite">
                 A piece begins with a conversation and a sharpened pencil. It
-                ends on a truck headed across Tāmaki Makaurau — to a kitchen, a
-                lounge, a café, a studio. In between: drawings, prototypes,
+                ends on a truck headed across Tāmaki Makaurau — to a lounge, a
+                gallery wall, a studio. In between: drawings, prototypes,
                 steel that gets cut, oak that gets steam-bent, brass that gets
                 polished. The fingerprints stay on.
               </p>

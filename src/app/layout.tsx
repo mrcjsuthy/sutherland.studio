@@ -25,7 +25,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Sutherland Studio — Design & Build. Florence to Auckland.",
   description:
-    "Sutherland Studio is an industrial design and build practice based in Auckland, New Zealand. Bespoke objects, furniture and interiors with an Italian sensibility.",
+    "Sutherland Studio is an industrial design and build practice based in Auckland, New Zealand. Bespoke furniture, objects and small installations with an Italian sensibility.",
   metadataBase: new URL("https://sutherland.studio"),
   openGraph: {
     title: "Sutherland Studio",

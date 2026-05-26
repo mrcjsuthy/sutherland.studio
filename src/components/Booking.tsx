@@ -4,10 +4,9 @@ import { useMemo, useState } from "react";
 import { site } from "@/data/site";
 
 type ProjectType =
-  | "Furniture"
-  | "Kitchen / Joinery"
+  | "Furniture / Product"
+  | "Small Installation"
   | "Lighting / Object"
-  | "Interior"
   | "Product / Industrial"
   | "Graphic Design"
   | "Web / App"
@@ -17,10 +16,9 @@ type ProjectType =
 type Budget = "< 5k" | "5–15k" | "15–40k" | "40k+" | "Open";
 
 const projectTypes: ProjectType[] = [
-  "Furniture",
-  "Kitchen / Joinery",
+  "Furniture / Product",
+  "Small Installation",
   "Lighting / Object",
-  "Interior",
   "Product / Industrial",
   "Graphic Design",
   "Web / App",
@@ -61,7 +59,7 @@ export function Booking() {
   const dates = useMemo(() => getUpcomingDates(12), []);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [type, setType] = useState<ProjectType>("Furniture");
+  const [type, setType] = useState<ProjectType>("Furniture / Product");
   const [budget, setBudget] = useState<Budget>("5–15k");
   const [date, setDate] = useState(dates[0]?.iso ?? "");
   const [time, setTime] = useState(slots[1]);

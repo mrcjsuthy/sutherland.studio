@@ -21,9 +21,8 @@ export const site = {
   ],
   tagline: "Design & build, made to measure.",
   manifesto:
-    "Sutherland Studio is a one-bench practice making considered objects, furniture and small interiors — and the brands, films and digital tools that sit alongside them. Trained in industrial design in Florence and working out of a workshop in Auckland. Every commission is drawn, prototyped and built by hand. Every build is filmed start to finish, and the film is delivered with the piece.",
+    "Sutherland Studio is a one-bench practice making considered furniture, objects and small installations — wall sculptures, spatial pieces, tables and chairs. Trained in industrial design in Florence and working out of a workshop in Auckland. Every piece is drawn, prototyped and built by hand. Every build is filmed start to finish, and the film is delivered with the work.",
   studioHours: {
-    // NZST. Mon–Fri 09:00–21:00.
     weekdayOpen: 9,
     weekdayClose: 21,
     timezone: "Pacific/Auckland",
@@ -35,11 +34,11 @@ export const ticker = [
   "Design",
   "Prototype",
   "Build",
-  "Every build on film",
+  "Tables · Chairs · Objects",
+  "Wall sculptures · Installations",
   "Florence ⇄ Auckland",
   "Steel · Oak · Brass · Stone",
   "Made to measure",
-  "Brand · Web · AI · Object",
   "Est. 2026",
 ];
 
@@ -79,17 +78,6 @@ export const work = [
   },
   {
     n: "04",
-    title: "Cucina K2",
-    type: "Kitchen Build",
-    material: "Stainless · European oak · Travertine",
-    year: "2026",
-    place: "Grey Lynn, Auckland",
-    notes: "Full design–build. From measured drawings to install — and on film.",
-    accent: "rust" as const,
-    size: "mid" as const,
-  },
-  {
-    n: "05",
     title: "Sedia 04",
     type: "Side Chair",
     material: "Steam-bent ash · Saddle leather",
@@ -98,6 +86,17 @@ export const work = [
     notes: "Three years in development. Production run, 2026.",
     accent: "moss" as const,
     size: "tall" as const,
+  },
+  {
+    n: "05",
+    title: "Relief 01",
+    type: "Wall Sculpture",
+    material: "Patinated steel · Macrocarpa",
+    year: "In development",
+    place: "Studio prototype",
+    notes: "Small installation piece — wall-mounted, modular panels.",
+    accent: "rust" as const,
+    size: "mid" as const,
   },
   {
     n: "06",
@@ -118,22 +117,22 @@ export type Service = {
   desc: string;
   from: string;
   group: "build" | "digital";
-  href?: string; // external URL, takes precedence over #book
+  href?: string;
 };
 
 export const services: Service[] = [
   {
     code: "S/01",
     name: "Bespoke Furniture",
-    desc: "Tables, seating, casegoods. Drawn, prototyped, built in-house. Every build filmed.",
+    desc: "Tables, chairs, seating and casegoods. Drawn, prototyped, built in-house. Every build filmed.",
     from: "NZD 4,800",
     group: "build",
   },
   {
     code: "S/02",
-    name: "Kitchens & Joinery",
-    desc: "Full design–build. Measured survey through to install. Filmed start to finish.",
-    from: "NZD 28,000",
+    name: "Small Installations",
+    desc: "Wall sculptures, spatial objects and one-off pieces. Designed for a specific wall, room or place.",
+    from: "NZD 2,400",
     group: "build",
   },
   {
@@ -145,34 +144,27 @@ export const services: Service[] = [
   },
   {
     code: "S/04",
-    name: "Interior Fit-out",
-    desc: "Small commercial and residential. Cafés, studios, retail.",
-    from: "POA",
-    group: "build",
-  },
-  {
-    code: "S/05",
     name: "Product / Industrial Design",
     desc: "Concept, CAD, prototyping for product clients. From sketch to first run.",
     from: "NZD 1,400/day",
     group: "build",
   },
   {
-    code: "S/06",
+    code: "S/05",
     name: "Graphic Design",
     desc: "Identity, print, signage and packaging. Built to live next to the object.",
     from: "NZD 1,200",
     group: "digital",
   },
   {
-    code: "S/07",
+    code: "S/06",
     name: "Web & App Development",
     desc: "Editorial sites, product pages, lightweight apps. Designed and shipped end-to-end.",
     from: "NZD 3,800",
     group: "digital",
   },
   {
-    code: "S/08",
+    code: "S/07",
     name: "AI Strategy & Implementation",
     desc: "Practical AI for small studios and operators. Delivered via AI Partner — our sister practice.",
     from: "POA",
@@ -180,21 +172,12 @@ export const services: Service[] = [
     href: "https://www.aipartner.co.nz",
   },
   {
-    code: "S/09",
+    code: "S/08",
     name: "Free Consultation",
     desc: "60-minute studio session. Drawings, materials, costing direction. Free, no obligation.",
     from: "Free",
     group: "build",
   },
-];
-
-export const products = [
-  { code: "P/001", name: "Lampada Sasso", price: "NZD 690", status: "In stock" },
-  { code: "P/002", name: "Scaffale 0.1 — Module A", price: "NZD 1,280", status: "Made to order" },
-  { code: "P/003", name: "Vassoio in Acciaio", price: "NZD 240", status: "In stock" },
-  { code: "P/004", name: "Sgabello Basso", price: "NZD 820", status: "Pre-order" },
-  { code: "P/005", name: "Specchio Cornice", price: "NZD 1,100", status: "Made to order" },
-  { code: "P/006", name: "Sedia 04", price: "NZD 1,950", status: "Q3 2026" },
 ];
 
 export const process = [
@@ -211,17 +194,17 @@ export const process = [
   {
     n: "III",
     title: "Prototype",
-    body: "For new objects, a 1:1 or scale model. For interiors, full set-out drawings and joints tested.",
+    body: "For new objects, a 1:1 or scale model. Joints tested, proportions settled before the final build.",
   },
   {
     n: "IV",
     title: "Build & Film",
-    body: "Made on a single bench, by one set of hands — and filmed start to finish. Weekly cuts posted while we work.",
+    body: "Made on a single bench, by one set of hands — and filmed start to finish. Cuts posted as they become available.",
   },
   {
     n: "V",
     title: "Delivery & Film",
-    body: "Hand delivered and installed across Tāmaki Makaurau. The finished film of your build ships with the piece.",
+    body: "Hand delivered across Tāmaki Makaurau. The finished film of your build ships with the piece.",
   },
 ];
 
@@ -233,50 +216,29 @@ export const stats = [
 ];
 
 // ---------------------------------------------------------------------------
-// "Right now at the bench" — the current project being worked on.
-// Update these fields whenever you finish a build or start a new one.
+// "Right now at the bench" — set status to "planning" until a build is live.
 // ---------------------------------------------------------------------------
 export const currentBuild = {
-  code: "ATB/07",
-  title: "Cucina K2",
-  type: "Kitchen build",
-  client: "Private residence · Grey Lynn",
-  startedAt: "2026-04-12",
-  eta: "2026-06-30",
-  progress: 0.62, // 0–1
-  materials: ["Stainless steel", "European oak", "Travertine"],
-  note: "Joinery carcass up; door fronts in their second coat of oil this week.",
-  filmEpisode: "Film · EP/07 — Frames & faces",
-  filmHref: "https://www.youtube.com/@sutherland-studio",
+  code: "ATB/—",
+  status: "planning" as const,
+  title: "Next build",
+  type: "In planning",
+  note: "Currently drawing up plans for the next build. Details to be released — build begins June 2026.",
+  timeline: "June 2026",
 };
 
 // ---------------------------------------------------------------------------
-// Limited edition release with countdown + order flow.
-// Set `unlockAt` to a future ISO timestamp; the order form is locked until
-// then. Set `soldOut: true` once the edition is gone.
+// Limited edition — set available: true when a drop is ready to announce.
 // ---------------------------------------------------------------------------
 export const release = {
-  code: "R/001",
-  title: "Lampada Sasso · Edizione I",
+  available: false,
+  code: "R/—",
+  title: "Limited edition",
   blurb:
-    "Hand-poured concrete base with a brushed-brass collar and a warm dimmable LED. Twenty-four pieces. Each numbered, signed and shipped with its build film.",
-  price: 690, // NZD ex GST
-  currency: "NZD",
-  unitsTotal: 24,
-  // Resolves to local NZ time. Edit this to set the unlock moment.
-  unlockAt: "2026-05-23T19:00:00+12:00",
-  closesAt: "2026-06-30T23:59:00+12:00",
-  materials: "Cast concrete · Brushed brass · Warm LED",
-  dimensions: "Ø 180mm · H 280mm",
-  ships: "Ships from Auckland within 4 weeks of order.",
-  imageAccent: "rust" as const,
-  soldOut: false,
+    "Small-run furniture and objects, numbered and signed. Each release ships with its build film. Details announced as pieces become ready.",
+  timeline: "Released as available",
 };
 
-// ---------------------------------------------------------------------------
-// Partnerships / openings. Each vacancy has a status — open / closed / soon.
-// Showcased like the studio-open badge: a coloured dot + label.
-// ---------------------------------------------------------------------------
 export type Vacancy = {
   code: string;
   title: string;
@@ -294,7 +256,7 @@ export const vacancies: Vacancy[] = [
     location: "Auckland",
     status: "open",
     blurb:
-      "Two days a week on the bench — joinery, finishing and the occasional steel weld. Curious hands, careful eye.",
+      "Two days a week at the bench — joinery, finishing and the occasional steel weld. Curious hands, careful eye.",
   },
   {
     code: "V/02",
