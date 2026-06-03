@@ -18,7 +18,12 @@ export function Services() {
             What we&rsquo;re <em>open</em> for.
           </h2>
           <p className="col-span-12 md:col-span-3 md:text-right label">
-            Prices ex GST · NZD
+            <a
+              href="/systems-automation"
+              className="text-ink hover:text-rust border-b border-ink/30 hover:border-rust transition-colors"
+            >
+              Systems & Automation →
+            </a>
           </p>
         </header>
 

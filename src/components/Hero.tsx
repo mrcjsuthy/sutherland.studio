@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative pt-24 md:pt-28 pb-0 overflow-hidden"
+      className="relative pt-[var(--nav-h)] pb-0 overflow-hidden"
     >
       {/* Background grid + grit */}
       <div

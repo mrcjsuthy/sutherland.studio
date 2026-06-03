@@ -77,10 +77,11 @@ export function Footer() {
                 ["02", "Work", "#work"],
                 ["03", "Films", "#films"],
                 ["04", "Services", "#services"],
-                ["05", "Release", "#release"],
-                ["06", "Process", "#process"],
-                ["07", "Careers", "#careers"],
-                ["08", "Book", "#book"],
+                ["05", "Systems", "/systems-automation"],
+                ["06", "Release", "#release"],
+                ["07", "Process", "#process"],
+                ["08", "Careers", "#careers"],
+                ["09", "Book", "#book"],
               ].map(([n, label, href]) => (
                 <li key={href}>
                   <a
