@@ -354,6 +354,30 @@ textarea.field {
   transform: translateY(0);
 }
 
+/* 3D work viewer — zoom slider */
+.work-zoom-slider {
+  appearance: none;
+  background: var(--chalk);
+  border-radius: 999px;
+}
+.work-zoom-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--rust);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+}
+.work-zoom-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--rust);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,

@@ -11,7 +11,7 @@ Florence-trained sensibility, South Pacific texture, considered objects made by 
 - **Next.js 16** (App Router, Turbopack)
 - **TypeScript** + **Tailwind v4**
 - **next/font** loading [Fraunces](https://fonts.google.com/specimen/Fraunces) (display), [Inter](https://fonts.google.com/specimen/Inter) (body), and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) (technical labels)
-- No image dependencies — work-portfolio plates are rendered as inline SVG so the site ships fast on day one and is easy to swap for real photography later
+- Selected work uses interactive **3D workshop rooms** (React Three Fiber) — drag to orbit; drop GLB models into `public/models/` (see `public/models/README.md`)
 
 ## Local development
 
@@ -39,7 +39,8 @@ src/
     Hero.tsx             Editorial hero with index, big wordmark, locations
     Ticker.tsx           Marquee ticker (3 variants)
     Manifesto.tsx        About / manifesto / studio principles
-    Work.tsx             Asymmetric portfolio grid with SVG plates
+    Work.tsx             Asymmetric portfolio grid with 3D room viewers
+    work/                R3F scene, procedural product shapes, GLB loader
     Services.tsx         Services table + Shop list + pre-order CTA
     Process.tsx          Dark "From sketch to delivery" five-step
     Booking.tsx          Interactive consultation booking form

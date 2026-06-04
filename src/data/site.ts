@@ -42,72 +42,113 @@ export const ticker = [
   "Est. 2026",
 ];
 
-export const work = [
+/** Procedural stand-in until a GLB is added under public/models/ */
+export type WorkShape =
+  | "table"
+  | "shelf"
+  | "lamp"
+  | "chair"
+  | "relief"
+  | "bench";
+
+export type WorkPiece = {
+  /** Chronological release ID — 0.0.1, 0.0.2, … */
+  version: string;
+  type: string;
+  materials: string[];
+  funFact: string;
+  /** Limited-edition run size */
+  editions: number;
+  year: string;
+  accent: "rust" | "moss" | "copper";
+  shape: WorkShape;
+  /** e.g. /models/04-sedia.glb — omit to use procedural preview */
+  model?: string;
+};
+
+/** Full index — restore entries here when more pieces go live. */
+export const workArchive: WorkPiece[] = [
   {
-    n: "01",
-    title: "Tavolo Grezzo",
+    version: "0.0.3",
     type: "Dining Table",
-    material: "Recycled rimu · Patinated steel",
+    materials: ["Recycled rimu top", "Patinated steel base", "Hardwax oil finish"],
+    funFact:
+      "The base is welded as one piece, then left to move slightly as it cools — we level the top to the steel, not the other way around.",
+    editions: 6,
     year: "2026",
-    place: "Pt Chev, Auckland",
-    notes: "Six-seat refectory table on a single welded plate base. Hand-oiled.",
-    accent: "rust" as const,
-    size: "tall" as const,
+    accent: "rust",
+    shape: "table",
+    model: "/models/01-tavolo-grezzo.glb",
   },
   {
-    n: "02",
-    title: "Scaffale 0.1",
+    version: "0.0.4",
     type: "Modular Shelving",
-    material: "Powder-coated steel · Tasmanian oak",
+    materials: ["Powder-coated steel frame", "Tasmanian oak shelves", "Brass barrel bolts"],
+    funFact:
+      "Every kit is flat-packed from the workshop; the first assembly is always ours, so we know exactly which bolt wants an extra half-turn.",
+    editions: 18,
     year: "2026",
-    place: "Studio prototype",
-    notes: "Bolt-together system. Ships flat. Three depths, two heights.",
-    accent: "moss" as const,
-    size: "short" as const,
+    accent: "moss",
+    shape: "shelf",
   },
   {
-    n: "03",
-    title: "Lampada Sasso",
+    version: "0.0.5",
     type: "Table Lamp",
-    material: "Cast concrete · Brushed brass",
+    materials: ["Hand-poured concrete base", "Brushed brass stem", "Dimmable LED module"],
+    funFact:
+      "Bases are poured in small batches — the aggregate settles differently each time, so the swirl at the foot is never repeated.",
+    editions: 24,
     year: "2026",
-    place: "Limited edition of 24",
-    notes: "Dimmable LED. Hand-poured base; no two pieces alike.",
-    accent: "copper" as const,
-    size: "mid" as const,
+    accent: "copper",
+    shape: "lamp",
   },
   {
-    n: "04",
-    title: "Sedia 04",
-    type: "Side Chair",
-    material: "Steam-bent ash · Saddle leather",
-    year: "In development",
-    place: "Workshop",
-    notes: "Three years in development. Production run, 2026.",
-    accent: "moss" as const,
-    size: "tall" as const,
-  },
-  {
-    n: "05",
-    title: "Relief 01",
-    type: "Wall Sculpture",
-    material: "Patinated steel · Macrocarpa",
-    year: "In development",
-    place: "Studio prototype",
-    notes: "Small installation piece — wall-mounted, modular panels.",
-    accent: "rust" as const,
-    size: "mid" as const,
-  },
-  {
-    n: "06",
-    title: "Banco di Lavoro",
+    version: "0.0.6",
     type: "Workbench",
-    material: "Macrocarpa · Mild steel",
+    materials: ["Macrocarpa slab", "Mild steel underframe", "Hardened vice plate"],
+    funFact:
+      "Commissioned benches get a notch map drawn on the slab before steel goes in — every vice, dog hole, and tool rail is cut to habit, not a template.",
+    editions: 4,
     year: "2026",
-    place: "Private commission",
-    notes: "Workshop bench with vice, drawers and tool rail.",
-    accent: "copper" as const,
-    size: "short" as const,
+    accent: "copper",
+    shape: "bench",
+    model: "/models/06-banco.glb",
+  },
+];
+
+/** Live on site — selected work grid */
+export const work: WorkPiece[] = [
+  {
+    version: "0.0.1",
+    type: "Side Chair",
+    materials: [
+      "Steam-bent ash frame",
+      "Vegetable-tanned saddle leather",
+      "Blackened steel hardware",
+    ],
+    funFact:
+      "Each back rail is steamed and bent in a single pass — we only get one try before the timber remembers the curve.",
+    editions: 12,
+    year: "2026",
+    accent: "moss",
+    shape: "chair",
+    model: "/models/04-sedia.glb",
+  },
+  {
+    version: "0.0.2",
+    type: "Lounge Chair",
+    materials: [
+      "Solid American walnut",
+      "Oil-waxed shell finish",
+      "Full-grain leather inset",
+    ],
+    funFact:
+      "The outer shell is rough-milled, then hand-rasped; grain flow shifts on every piece, so no two chairs share the same silhouette at the arm.",
+    editions: 24,
+    year: "2026",
+    accent: "copper",
+    shape: "chair",
+    model: "/models/05-arc-walnut-chair.glb",
   },
 ];
 

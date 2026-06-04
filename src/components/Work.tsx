@@ -1,4 +1,5 @@
-import { work } from "@/data/site";
+import { work, type WorkPiece } from "@/data/site";
+import { WorkRoomViewer } from "@/components/work/WorkRoomViewer";
 
 type Accent = "rust" | "moss" | "copper";
 
@@ -8,10 +9,10 @@ const accentBg: Record<Accent, string> = {
   copper: "bg-copper",
 };
 
-const accentText: Record<Accent, string> = {
-  rust: "text-rust",
-  moss: "text-moss",
-  copper: "text-copper",
+const accentBorder: Record<Accent, string> = {
+  rust: "border-rust/40 text-rust",
+  moss: "border-moss/40 text-moss",
+  copper: "border-copper/40 text-copper",
 };
 
 export function Work() {
@@ -23,7 +24,7 @@ export function Work() {
             <p className="label-ink">§ 02 — Selected work</p>
           </div>
           <div className="col-span-6 md:col-span-3 md:order-3 flex md:justify-end items-end">
-            <p className="label">06 of 24 indexed</p>
+            <p className="label">02 of 24 indexed</p>
           </div>
           <h2 className="col-span-12 md:col-span-6 md:order-2 font-display text-3xl md:text-5xl leading-[0.95] tracking-tight">
             Pieces built between
@@ -32,23 +33,10 @@ export function Work() {
           </h2>
         </header>
 
-        {/* Asymmetric editorial grid */}
-        <div className="mt-8 md:mt-12 grid grid-cols-12 gap-3 md:gap-4">
-          {work.map((w, i) => {
-            // Vary column spans / row spans for asymmetry
-            const spans = [
-              "col-span-12 md:col-span-7 md:row-span-2",
-              "col-span-6 md:col-span-5",
-              "col-span-6 md:col-span-5",
-              "col-span-12 md:col-span-4 md:row-span-2",
-              "col-span-6 md:col-span-4",
-              "col-span-6 md:col-span-4",
-            ];
-            const span = spans[i % spans.length];
-            return (
-              <WorkCard key={w.n} item={w} span={span} index={i} />
-            );
-          })}
+        <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-4 md:mt-12 md:grid-cols-2 md:gap-6">
+          {work.map((w) => (
+            <WorkCard key={w.version} item={w} />
+          ))}
         </div>
 
         <footer className="mt-10 md:mt-12 flex flex-wrap items-end justify-between gap-4 border-t hairline pt-6">
@@ -65,178 +53,104 @@ export function Work() {
   );
 }
 
-function WorkCard({
-  item,
-  span,
-  index,
-}: {
-  item: (typeof work)[number];
-  span: string;
-  index: number;
-}) {
-  const isFeature = span.includes("row-span-2");
-
+function WorkCard({ item }: { item: WorkPiece }) {
   return (
-    <article
-      className={`${span} group relative bg-bone border hairline-strong overflow-hidden flex flex-col`}
-    >
-      {/* Image / illustration plate */}
-      <div
-        className={`relative ${
-          isFeature ? "aspect-[4/5] md:aspect-auto md:flex-1" : "aspect-[4/3]"
-        } overflow-hidden`}
-      >
-        <Plate accent={item.accent} index={index} />
-        {/* Overlay number */}
-        <div className="absolute top-3 left-3 flex items-center gap-2">
-          <span className={`size-1.5 ${accentBg[item.accent]}`} />
-          <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-ink/80 bg-bone/70 backdrop-blur px-1.5 py-0.5">
-            {item.n} · {item.type}
-          </span>
+    <article className="group relative flex h-full flex-col border hairline-strong bg-bone">
+      <div className="relative overflow-visible">
+        <div className="relative aspect-[4/3] overflow-hidden">
+          <WorkRoomViewer item={item} />
+          <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
+            <span className={`size-1.5 ${accentBg[item.accent]}`} />
+            <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-ink/80 bg-bone/70 backdrop-blur px-1.5 py-0.5">
+              {item.version} · {item.type}
+            </span>
+          </div>
         </div>
-        <div className="absolute bottom-3 right-3">
-          <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-ink/80 bg-bone/70 backdrop-blur px-1.5 py-0.5">
-            {item.year}
-          </span>
+        <div className="absolute right-3 top-3 z-20">
+          <EditionBadge
+            count={item.editions}
+            accent={item.accent}
+            idSuffix={`${item.version}-view`}
+            tooltipAlign="end"
+          />
         </div>
       </div>
 
-      {/* Caption */}
-      <div className="px-4 py-4 md:px-5 md:py-5 border-t hairline">
+      <div className="flex flex-1 flex-col border-t hairline px-4 py-4 md:px-5 md:py-5">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-xl md:text-2xl leading-tight min-w-0">
-            {item.title}
-          </h3>
-          <p
-            className={`font-mono text-[9px] md:text-[10px] tracking-[0.14em] uppercase shrink-0 text-right max-w-[42%] ${accentText[item.accent]}`}
-          >
-            {item.material.split(" · ")[0]}
-          </p>
+          <div>
+            <h3 className="font-display text-2xl leading-none tracking-tight">
+              {item.version}
+            </h3>
+            <p className="mt-1 font-mono text-[10px] tracking-[0.16em] uppercase text-concrete">
+              {item.year}
+            </p>
+          </div>
+          <EditionBadge
+            count={item.editions}
+            accent={item.accent}
+            idSuffix={`${item.version}-cap`}
+            className="hidden sm:inline-flex"
+          />
         </div>
-        <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-concrete mt-1">
-          {item.place}
+
+        <ul className="mt-3 space-y-1">
+          {item.materials.map((m) => (
+            <li
+              key={m}
+              className="font-mono text-[10px] tracking-[0.14em] uppercase text-graphite before:mr-2 before:text-concrete before:content-['—']"
+            >
+              {m}
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-3 text-[13px] leading-[1.55] text-graphite">
+          <span className="font-mono text-[9px] tracking-[0.16em] uppercase text-concrete">
+            Note ·{" "}
+          </span>
+          {item.funFact}
         </p>
-        {isFeature && (
-          <p className="text-[13px] leading-snug text-graphite mt-2 max-w-[42ch]">
-            {item.notes}
-          </p>
-        )}
       </div>
     </article>
   );
 }
 
-/**
- * SVG "plate" used in place of imagery. Each plate is a different
- * abstract industrial composition so the grid feels rich without
- * needing real photography on day one.
- */
-function Plate({ accent, index }: { accent: Accent; index: number }) {
-  const accentVar =
-    accent === "rust"
-      ? "var(--rust)"
-      : accent === "moss"
-      ? "var(--moss)"
-      : "var(--copper)";
-
-  const variant = index % 6;
+function EditionBadge({
+  count,
+  accent,
+  idSuffix,
+  className = "",
+  tooltipAlign = "center",
+}: {
+  count: number;
+  accent: Accent;
+  idSuffix: string;
+  className?: string;
+  tooltipAlign?: "center" | "end";
+}) {
+  const tooltipAlignClass =
+    tooltipAlign === "end"
+      ? "right-0 left-auto translate-x-0"
+      : "left-1/2 -translate-x-1/2";
 
   return (
-    <div className="absolute inset-0">
-      {/* base */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            variant === 0
-              ? "linear-gradient(135deg, #1f1d18 0%, #2a2823 60%, #14130f 100%)"
-              : variant === 1
-              ? "linear-gradient(180deg, #e5dec8 0%, #d4ccb4 100%)"
-              : variant === 2
-              ? "linear-gradient(160deg, #cdc4a9 0%, #b9b099 100%)"
-              : variant === 3
-              ? "linear-gradient(210deg, #1a1916 0%, #2c2a24 100%)"
-              : variant === 4
-              ? "linear-gradient(180deg, #ece6d8 0%, #ddd3b9 100%)"
-              : "linear-gradient(135deg, #2a2823 0%, #14130f 100%)",
-        }}
-      />
-      {/* Composition svgs */}
-      <svg
-        viewBox="0 0 400 320"
-        preserveAspectRatio="xMidYMid slice"
-        className="absolute inset-0 w-full h-full"
+    <span
+      className={`group/le relative inline-flex cursor-help items-center gap-1 border bg-bone/90 px-1.5 py-0.5 font-mono text-[9px] tracking-[0.14em] uppercase backdrop-blur focus-within:outline-none focus-visible:ring-1 focus-visible:ring-ink/30 ${accentBorder[accent]} ${className}`}
+      tabIndex={0}
+      aria-describedby={`le-tip-${idSuffix}`}
+    >
+      <span className="text-ink/70">LE</span>
+      <span className="font-semibold">×{count}</span>
+      <span
+        id={`le-tip-${idSuffix}`}
+        role="tooltip"
+        className={`pointer-events-none absolute top-full z-50 mt-2 w-max max-w-[min(240px,72vw)] ${tooltipAlignClass} border hairline-strong bg-bone px-2.5 py-2 font-mono text-[9px] normal-case leading-snug tracking-normal text-graphite opacity-0 shadow-md transition-opacity duration-150 group-hover/le:opacity-100 group-focus-visible/le:opacity-100`}
       >
-        {variant === 0 && (
-          <>
-            <rect x="60" y="220" width="280" height="14" fill="#3c3a33" />
-            <rect x="80" y="100" width="6" height="120" fill="#494640" />
-            <rect x="314" y="100" width="6" height="120" fill="#494640" />
-            <rect x="60" y="90" width="280" height="14" fill={accentVar} />
-            <circle cx="200" cy="60" r="22" fill="#d9d1bc" opacity="0.9" />
-          </>
-        )}
-        {variant === 1 && (
-          <>
-            <rect x="40" y="40" width="320" height="240" fill="none" stroke="#2a2823" strokeWidth="2" />
-            <rect x="60" y="60" width="140" height="200" fill="#2a2823" />
-            <rect x="60" y="60" width="140" height="40" fill={accentVar} />
-            <rect x="220" y="60" width="120" height="95" fill="#2a2823" />
-            <rect x="220" y="170" width="120" height="90" fill="#2a2823" />
-            <circle cx="290" cy="115" r="6" fill={accentVar} />
-            <circle cx="290" cy="220" r="6" fill={accentVar} />
-          </>
-        )}
-        {variant === 2 && (
-          <>
-            <ellipse cx="200" cy="240" rx="120" ry="14" fill="#14130f" opacity="0.25" />
-            <rect x="170" y="120" width="60" height="120" fill="#2a2823" />
-            <rect x="155" y="100" width="90" height="22" fill={accentVar} />
-            <rect x="170" y="60" width="60" height="44" fill="#d9d1bc" />
-            <circle cx="200" cy="82" r="12" fill={accentVar} />
-          </>
-        )}
-        {variant === 3 && (
-          <>
-            <rect x="0" y="0" width="400" height="320" fill="none" />
-            <path d="M40 260 L200 80 L360 260 Z" fill="#1f1d18" stroke={accentVar} strokeWidth="2" />
-            <rect x="180" y="200" width="40" height="60" fill={accentVar} />
-            <line x1="40" y1="260" x2="360" y2="260" stroke="#d9d1bc" strokeWidth="1" />
-          </>
-        )}
-        {variant === 4 && (
-          <>
-            <rect x="0" y="240" width="400" height="80" fill="#2a2823" />
-            <rect x="80" y="120" width="240" height="120" fill="#14130f" />
-            <rect x="80" y="120" width="240" height="10" fill={accentVar} />
-            <rect x="100" y="150" width="40" height="80" fill="#3a382f" />
-            <rect x="160" y="150" width="40" height="80" fill="#3a382f" />
-            <rect x="220" y="150" width="40" height="80" fill="#3a382f" />
-            <rect x="280" y="150" width="40" height="80" fill="#3a382f" />
-          </>
-        )}
-        {variant === 5 && (
-          <>
-            <circle cx="200" cy="160" r="100" fill="none" stroke={accentVar} strokeWidth="2" />
-            <circle cx="200" cy="160" r="60" fill="#d9d1bc" />
-            <rect x="195" y="100" width="10" height="120" fill="#14130f" />
-            <rect x="140" y="155" width="120" height="10" fill="#14130f" />
-          </>
-        )}
-        {/* Grain dots */}
-        <g opacity="0.18">
-          {Array.from({ length: 40 }).map((_, i) => (
-            <circle
-              key={i}
-              cx={(i * 37) % 400}
-              cy={(i * 71) % 320}
-              r="0.7"
-              fill="#fff"
-            />
-          ))}
-        </g>
-      </svg>
-      <div className="absolute inset-0 grit pointer-events-none" />
-    </div>
+        Limited edition — only{" "}
+        <span className="font-semibold text-ink">{count}</span> pieces in this
+        run. Each is numbered and registered at the workshop.
+      </span>
+    </span>
   );
 }

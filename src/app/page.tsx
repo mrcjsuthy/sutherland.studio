@@ -4,6 +4,7 @@ import { Ticker } from "@/components/Ticker";
 import { CurrentBuild } from "@/components/CurrentBuild";
 import { Manifesto } from "@/components/Manifesto";
 import { Work } from "@/components/Work";
+import { Verification } from "@/components/verification/Verification";
 import { Films } from "@/components/Films";
 import { Services } from "@/components/Services";
 import { Release } from "@/components/Release";
@@ -22,6 +23,7 @@ export default function Home() {
         <CurrentBuild />
         <Manifesto />
         <Work />
+        <Verification />
         <Films />
         <Services />
         <Release />
